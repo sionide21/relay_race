@@ -21,11 +21,14 @@ defmodule Fw.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Fw, []},
-     applications: [:logger]]
+     applications: [:logger, :elixir_ale]]
   end
 
   def deps do
-    [{:nerves, "~> 0.3.0"}]
+    [
+      {:nerves, "~> 0.3.0"},
+      {:elixir_ale, "~> 0.5.5"},
+    ]
   end
 
   def system(target) do
