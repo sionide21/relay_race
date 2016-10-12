@@ -5,6 +5,10 @@
 # is restricted to this project.
 use Mix.Config
 
+# Use fake FW modules when developing
+config :fw, :relay_supervisor, FakeFw.RelaySupervisor
+config :fw, :relay, FakeFw.Relay
+
 # Configures the endpoint
 config :web_interface, WebInterface.Endpoint,
   url: [host: "localhost"],

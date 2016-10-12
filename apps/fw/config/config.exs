@@ -10,6 +10,10 @@ config :nerves, :firmware, rootfs_additions: "rootfs-additions"
 # List the GPIO pin numbers that are attached to relays
 config :relay, :pins, [5, 6, 13, 19, 26]
 
+# Use the real relay code when on the device
+config :fw, :relay_supervisor, RelaySupervisor
+config :fw, :relay, Relay
+
 # Configure phoenix for the web_interface
 config :web_interface, WebInterface.Endpoint,
   http: [port: 80],

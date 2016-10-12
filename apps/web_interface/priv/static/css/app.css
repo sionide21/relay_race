@@ -80,3 +80,29 @@ form.link, form.button {
     border-bottom: 0;
   }
 }
+
+.relay {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.relay .name {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.relay .status {
+  cursor: pointer;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.relay .status.on {
+  color: #191;
+}
+
+.relay .status.off {
+  color: #ccc;
+}
