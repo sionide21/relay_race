@@ -7,6 +7,9 @@ use Mix.Config
 
 config :nerves, :firmware, rootfs_additions: "rootfs-additions"
 
+# List the GPIO pin numbers that are attached to relays
+config :relay, :pins, [5, 6, 13, 19, 26]
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations

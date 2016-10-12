@@ -10,7 +10,8 @@ defmodule Fw do
 
     # Define workers and child supervisors to be supervised
     children = [
-      worker(Task, [fn -> start_network end], restart: :transient)
+      worker(Task, [fn -> start_network end], restart: :transient),
+      supervisor(RelaySupervisor, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
