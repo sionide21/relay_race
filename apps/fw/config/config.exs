@@ -12,3 +12,4 @@ config :nerves, :firmware, rootfs_additions: "rootfs-additions"
 # Uncomment to use target specific configurations
 
 # import_config "#{Mix.Project.config[:target]}.exs"
+import_config "wifi.exs"

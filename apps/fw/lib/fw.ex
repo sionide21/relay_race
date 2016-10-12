@@ -1,6 +1,8 @@
 defmodule Fw do
   use Application
 
+  @wifi_settings Application.get_env(:wifi, :settings)
+
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
@@ -8,7 +10,7 @@ defmodule Fw do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # worker(Fw.Worker, [arg1, arg2, arg3]),
+      worker(Task, [fn -> start_network end], restart: :transient)
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -17,4 +19,7 @@ defmodule Fw do
     Supervisor.start_link(children, opts)
   end
 
+  def start_network do
+    Nerves.InterimWiFi.setup("wlan0", @wifi_settings)
+  end
 end
