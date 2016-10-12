@@ -5,7 +5,10 @@ defmodule FakeFw.RelaySupervisor do
     [1, 2, 3, 4, 5]
   end
 
-  def get_relay(pin) do
+  def get_relay(pin) when pin in [1, 2, 3, 4, 5] do
     {:ok, pin}
+  end
+  def get_relay(_) do
+    {:error, "Couldn't get relay"}
   end
 end

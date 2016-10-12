@@ -17,6 +17,7 @@ defmodule WebInterface.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/relays/:relay/:status", PageController, :set_relay
   end
 
   # Other scopes may use custom stacks.

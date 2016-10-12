@@ -3,8 +3,21 @@
     <div class="name">
       Relay #<%= relay %>
     </div>
-    <div class="status <%= relay_status(relay) %>">
+    <div data-relay="<%= relay %>" class="status <%= relay_status(relay) %>">
       <%= relay_status(relay) %>
     </div>
+    <div class="loading hide"></div>
   </div>
 <% end %>
+
+<script type="application/javascript">
+  Array.prototype.forEach.call(document.getElementsByClassName("status"), function(el) {
+    el.addEventListener("click", function(event) {
+      el.classList.add("hide");
+      el.nextElementSibling.classList.remove("hide");
+
+      var newStatus = el.classList.contains("on") ? "off" : "on";
+      window.location = "/relays/" + el.dataset.relay + "/" + newStatus;
+    });
+  });
+</script>
