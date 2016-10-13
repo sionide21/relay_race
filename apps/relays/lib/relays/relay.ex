@@ -1,4 +1,4 @@
-defmodule Relay do
+defmodule Relays.Relay do
   use GenServer
 
   @doc """

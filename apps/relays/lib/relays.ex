@@ -1,7 +1,5 @@
-defmodule Fw do
+defmodule Relays do
   use Application
-
-  @wifi_settings Application.get_env(:wifi, :settings)
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -10,16 +8,12 @@ defmodule Fw do
 
     # Define workers and child supervisors to be supervised
     children = [
-      worker(Task, [fn -> start_network end], restart: :transient),
+      supervisor(Relays.RelaySupervisor, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Fw.Supervisor]
+    opts = [strategy: :one_for_one, name: Relays.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  def start_network do
-    Nerves.InterimWiFi.setup("wlan0", @wifi_settings)
   end
 end

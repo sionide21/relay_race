@@ -1,4 +1,4 @@
-defmodule RelaySupervisor do
+defmodule Relays.RelaySupervisor do
   use Supervisor
 
   @relay_pins Application.get_env(:relay, :pins)

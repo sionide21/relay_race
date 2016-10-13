@@ -11,8 +11,8 @@ config :nerves, :firmware, rootfs_additions: "rootfs-additions"
 config :relay, :pins, [5, 6, 13, 19, 26, 17, 27, 22]
 
 # Use the real relay code when on the device
-config :fw, :relay_supervisor, RelaySupervisor
-config :fw, :relay, Relay
+config :fw, :relay_supervisor, Relays.RelaySupervisor
+config :fw, :relay, Relays.Relay
 
 # Configure phoenix for the web_interface
 config :web_interface, WebInterface.Endpoint,
