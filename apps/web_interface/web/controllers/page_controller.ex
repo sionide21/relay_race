@@ -1,12 +1,10 @@
 defmodule WebInterface.PageController do
   use WebInterface.Web, :controller
-  @relay_supervisor Application.get_env(:fw, :relay_supervisor)
-  @relay Application.get_env(:fw, :relay)
 
   def set_relay(conn, %{"relay" => pin, "status" => status}) do
     {pin, ""} = Integer.parse(pin)
 
-    @relay_supervisor.get_relay(pin)
+    Relays.RelaySupervisor.get_relay(pin)
     |> update_relay(conn, status)
     |> redirect(to: "/")
   end
@@ -15,15 +13,15 @@ defmodule WebInterface.PageController do
     put_flash(conn, :error, error)
   end
   defp update_relay({:ok, relay}, conn, "on") do
-    @relay.on(relay)
+    Relays.Relay.on(relay)
     conn
   end
   defp update_relay({:ok, relay}, conn, "off") do
-    @relay.off(relay)
+    Relays.Relay.off(relay)
     conn
   end
 
   def index(conn, _params) do
-    render conn, "index.html", relays: @relay_supervisor.standard_pins
+    render conn, "index.html", relays: Relays.RelaySupervisor.standard_pins
   end
 end

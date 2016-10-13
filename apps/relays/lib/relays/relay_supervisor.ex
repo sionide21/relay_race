@@ -48,7 +48,7 @@ defmodule Relays.RelaySupervisor do
   # Start all passed in relays
   def init(pins) do
     children = Enum.map(pins, fn pin ->
-      worker(Relay, [pin], id: pin)
+      worker(Relays.Relay, [pin], id: pin)
     end)
 
     supervise(children, strategy: :one_for_one)

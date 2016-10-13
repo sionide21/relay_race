@@ -18,13 +18,13 @@ defmodule Relays.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :elixir_ale],
+    [applications: [:logger],
      mod: {Relays, []}]
   end
 
   defp deps do
     [
-      {:elixir_ale, "~> 0.5.5"},
+      {:elixir_ale, optional: true}
     ]
   end
 end

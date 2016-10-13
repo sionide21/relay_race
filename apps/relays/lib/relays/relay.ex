@@ -1,5 +1,6 @@
 defmodule Relays.Relay do
   use GenServer
+  @gpio Application.get_env(:relays, Gpio, Relays.FakeGpio)
 
   @doc """
   Start a relay process for a given pin.
@@ -49,35 +50,35 @@ defmodule Relays.Relay do
 
   # On init, start the GPIO for this pin
   def init(pin) do
-    {:ok, gpio} = Gpio.start_link(pin, :output)
-    Gpio.write(gpio, 1)
+    {:ok, gpio} = @gpio.start_link(pin, :output)
+    @gpio.write(gpio, 1)
     {:ok, gpio}
   end
 
 
   # Turn on the relay
   def handle_info(:on, gpio) do
-    Gpio.write(gpio, 0)
+    @gpio.write(gpio, 0)
     {:noreply, gpio}
   end
 
   # Turn on the relay for a specified amount of time (milliseconds)
   def handle_info({:on, ms}, gpio) do
-    Gpio.write(gpio, 0)
+    @gpio.write(gpio, 0)
     Process.send_after(self(), :off, ms)
     {:noreply, gpio}
   end
 
   # Turn off the relay
   def handle_info(:off, gpio) do
-    Gpio.write(gpio, 1)
+    @gpio.write(gpio, 1)
     {:noreply, gpio}
   end
 
 
   # Get the status of the relay
   def handle_call(:status, _from, gpio) do
-    status = case Gpio.read(gpio) do
+    status = case @gpio.read(gpio) do
       1 -> :off
       0 -> :on
     end

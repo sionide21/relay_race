@@ -5,9 +5,7 @@
 # is restricted to this project.
 use Mix.Config
 
-# Use fake FW modules when developing
-config :fw, :relay_supervisor, FakeFw.RelaySupervisor
-config :fw, :relay, FakeFw.Relay
+config :relays, Gpio, Relays.FakeGpio
 
 # Configures the endpoint
 config :web_interface, WebInterface.Endpoint,
