@@ -8,7 +8,7 @@ use Mix.Config
 config :nerves, :firmware, rootfs_additions: "rootfs-additions"
 
 # List the GPIO pin numbers that are attached to relays
-config :relay, :pins, [5, 6, 13, 19, 26]
+config :relay, :pins, [5, 6, 13, 19, 26, 17, 27, 22]
 
 # Use the real relay code when on the device
 config :fw, :relay_supervisor, RelaySupervisor
