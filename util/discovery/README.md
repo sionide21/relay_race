@@ -1,24 +1,16 @@
 # Discovery
 
-**TODO: Add description**
+Locate a Relay Race device on the network using SSDP.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+```
+mix deps.get
+mix escript.build
+```
 
-  1. Add `discovery` to your list of dependencies in `mix.exs`:
+## Usage
 
-    ```elixir
-    def deps do
-      [{:discovery, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `discovery` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:discovery]]
-    end
-    ```
-
+```
+./discovery
+```

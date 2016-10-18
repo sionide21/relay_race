@@ -7,14 +7,22 @@ defmodule Discovery.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     escript: escript]
+  end
+
+  def escript do
+    [
+      main_module: Discovery.CLI,
+      app: nil
+    ]
   end
 
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :nerves_ssdp_client]]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +35,8 @@ defmodule Discovery.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:nerves_ssdp_client, "~> 0.1.3"},
+    ]
   end
 end

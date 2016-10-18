@@ -11,6 +11,10 @@ config :relays, Gpio, Gpio
 # List the GPIO pin numbers that are attached to relays
 config :relay, :pins, [5, 6, 13, 19, 26, 17, 27, 22]
 
+# Discoverable name on network
+config :discovery, :service, "relay-race"
+config :discovery, :name, "My Relay Race Server"
+
 # Configure phoenix for the web_interface
 config :web_interface, WebInterface.Endpoint,
   http: [port: 80],

@@ -20,6 +20,7 @@ defmodule Fw do
   end
 
   def start_network do
+    Fw.WifiSSDPServer.add_wifi_handler()
     Nerves.InterimWiFi.setup("wlan0", @wifi_settings)
   end
 end

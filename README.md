@@ -51,3 +51,14 @@ Connect the serial controller to the UART, ground, and 5v pins of the RaspberryP
   * For the linked one, on a OS X: `/dev/tty.usbserial`
 * Use screen to connect: `screen /dev/tty.usbserial 115200`
   * If the screen is blank, try pressing enter to get a prompt
+
+## Finding your project on the network
+
+Relay race broadcasts using SSDP. You can use the utility app in `util/discovery`
+to find all running instances on your local network.
+
+To differentiate nodes, set a unique `:discovery, :name` option in `apps/fw/config/config.exs`
+
+```
+config :discovery, :name, "My Relay Race Server"
+```
