@@ -12,3 +12,11 @@ mix nerves.new fw --target rpi3
 cd apps
 mix phoenix.new web_interface --no-ecto --no-brunch
 ```
+
+### To add discovery
+
+```
+mkdir util
+cd util
+mix new discovery
+```
